@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --foreground-rgb: white;
+  --background-start-rgb: white;
+  --background-end-rgb: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: white;
+    --background-start-rgb: white;
+    --background-end-rgb: white;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+[data-testid="flowbite-navbar-toggle"] {
+  display: none;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+
+  width: 28px;
+  height: 24px;
+
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+}
+
+.zoom-box{
+  transition: transform 1s;
+}
+
+.zoom {
+  transform: scale(1.2);
+}
+
+.raise-box, .raise-box>* {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+  z-index: 100;
+}
+
+.raise{
+  top: -30px;
+}
+
+.contrast {
+  image-rendering: pixelated;
+}
+
+.animation-wrapper {
+  font-family: Raleway;
+  overflow:hidden;
+  width:100%;
+  height:100%;
+  position:absolute;
+  text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
+}
+.container  {
+  width:100%;
+  height:100%;
+  position:absolute;
+}
+#blurCanvasTop{
+  left:0%;
+  top:0%;
+  position:absolute;
+}
+#blurCanvasBottom{
+  left:50%;
+  top:0;
+  position:absolute;
+}
+.content {
+  left:15%;
+  top:20%;
+  width:70%;
+  position:relative;
+}
+h1.title {
+  color:white;
+  font-size: 4vw;
+  display:inline;
+  font-weight:500;
+}
+p.desc{
+  position:relative;
+  width:100%;
+  font-size:4vw;
+  color:rgba(255,255,255,1);
+  font-weight: 200;
+  margin-bottom:40px;
+}
+.contacts {
+  position:absolute;
+  right:0%;
+  bottom:0;
+  margin-bottom:1vw;
+  margin-right:1vw;
+}
+.contact li {
+  list-style-type:none;
+  float:left;
+  color: rgba(255,255,255,0.8);
+  font-weight:100;
+  font-size:17px;
+}
+.contact li a {
+  text-decoration:none;
+  color: rgba(255,255,255,0.8);
+}
+.contact li a:hover{
+  color:rgba(255,255,255,1);
+}
+.contact li~li {
+  margin-left:1vw; 
+}
+.blur {
+  width:100%;
+  height:100%;
+  position:absolute;
+  overflow:hidden;
+}
+.blurTop{
+  left:40%;
+  top:-110%;
+  transform:rotate(20deg);
+  transform-origin: 0 100%;
+}
+.blurBottom{
+  left:-60%;
+  top:100%;
+  transform:rotate(20deg);
+  transform-origin: 100% 0%;
+}
+
+.card{
+  transition: box-shadow ease 0.5s;
+}
+
+.card:hover{
+  box-shadow: 0px -1px 12px 2px rgba(0,0,0,0.46);
+  -webkit-box-shadow: 0px -1px 12px 2px rgba(0,0,0,0.46);
+  -moz-box-shadow: 0px -1px 12px 2px rgba(0,0,0,0.46);
+}
