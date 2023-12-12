@@ -4,6 +4,7 @@ import './globals.css'
 import Footer from './footer'
 import FooterStrip from './footer_strip'
 import { Outlet } from 'react-router-dom'
+import WhatsAppIcon from '../components/wa_icon'
 
 
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <Outlet />
         <Footer />
         <FooterStrip />
+        <WhatsAppIcon />
         </body>
     </html>
   )

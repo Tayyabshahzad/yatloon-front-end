@@ -1282,6 +1282,14 @@ input:checked + .toggle-bg {
   margin-right: 0.75rem;
 }
 
+.ms-3 {
+  margin-inline-start: 0.75rem;
+}
+
+.ms-auto {
+  margin-inline-start: auto;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1436,6 +1444,10 @@ input:checked + .toggle-bg {
 
 .h-\[100px\] {
   height: 100px;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
 }
 
 .h-\[200px\] {
@@ -2565,6 +2577,11 @@ input:checked + .toggle-bg {
   background-color: rgb(101 163 13 / var(--tw-bg-opacity));
 }
 
+.bg-orange-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 236 220 / var(--tw-bg-opacity));
+}
+
 .bg-pink-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(252 232 243 / var(--tw-bg-opacity));
@@ -3197,6 +3214,11 @@ input:checked + .toggle-bg {
   line-height: 2rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-\[12px\] {
   font-size: 12px;
 }
@@ -3300,6 +3322,11 @@ input:checked + .toggle-bg {
 
 .leading-tight {
   line-height: 1.25;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-blue-700 {
@@ -3445,6 +3472,11 @@ input:checked + .toggle-bg {
 .text-lime-900 {
   --tw-text-opacity: 1;
   color: rgb(54 83 20 / var(--tw-text-opacity));
+}
+
+.text-orange-500 {
+  --tw-text-opacity: 1;
+  color: rgb(255 90 31 / var(--tw-text-opacity));
 }
 
 .text-pink-500 {
@@ -4905,6 +4937,11 @@ input:checked + .toggle-bg {
   background-color: rgb(101 163 13 / var(--tw-bg-opacity));
 }
 
+:is(.dark .dark\:bg-orange-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(180 52 3 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:bg-pink-200) {
   --tw-bg-opacity: 1;
   background-color: rgb(250 209 232 / var(--tw-bg-opacity));
@@ -5125,6 +5162,11 @@ input:checked + .toggle-bg {
 :is(.dark .dark\:text-lime-900) {
   --tw-text-opacity: 1;
   color: rgb(54 83 20 / var(--tw-text-opacity));
+}
+
+:is(.dark .dark\:text-orange-200) {
+  --tw-text-opacity: 1;
+  color: rgb(252 217 189 / var(--tw-text-opacity));
 }
 
 :is(.dark .dark\:text-pink-600) {
@@ -5998,6 +6040,10 @@ input:checked + .toggle-bg {
 
   .sm\:h-\[120vh\] {
     height: 120vh;
+  }
+
+  .sm\:h-\[150vh\] {
+    height: 150vh;
   }
 
   .sm\:h-\[400px\] {
