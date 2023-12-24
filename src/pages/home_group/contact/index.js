@@ -1,10 +1,18 @@
 import { TextInput } from "flowbite-react/lib/cjs/components/TextInput";
 import { Textarea } from "flowbite-react/lib/cjs/components/Textarea";
+import { useContext, useEffect } from "react";
 import { IoCall } from "react-icons/io5";
 import { LuMessagesSquare } from "react-icons/lu";
+import { HeadingContext } from "../../layout";
 
 export default function Contact(props)
 {
+    const [mainHeading, setMainHeading ]= useContext(HeadingContext)
+
+    useEffect(() => {
+        setMainHeading('Contact Us')
+    })
+
     return (
         <div className="bg-gray-100">
                 <section className="relative max-sm:h-[700px] h-[300px]">

@@ -5,8 +5,9 @@ import Footer from './footer'
 import FooterStrip from './footer_strip'
 import { Outlet } from 'react-router-dom'
 import WhatsAppIcon from '../components/wa_icon'
+import { createContext, useMemo, useState } from 'react'
 
-
+export const HeadingContext = createContext([]);
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,12 +15,15 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const [mainHeading, setMainHeading ]= useState('')
   return (
     <html lang="en">
-      <body className={`min-h-screen`}>
+      <body className={`min-h-screen imprima`}>
         <HeaderStrip />
         <Header />
+        <HeadingContext.Provider value={[mainHeading, setMainHeading]}>
           <Outlet />
+        </HeadingContext.Provider>
         <Footer />
         <FooterStrip />
         <WhatsAppIcon />

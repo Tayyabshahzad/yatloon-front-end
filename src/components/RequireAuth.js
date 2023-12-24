@@ -1,6 +1,6 @@
-import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
-import useSignOut from "react-auth-kit/hooks/useSignOut";
-import React from "react";
+import { createElement, useEffect } from "react";
+import { useIsAuthenticated, useSignOut } from "react-auth-kit";
+
 const { useLocation, Navigate } = require("react-router-dom");
 
  const RequireAuth = function (_a) {
@@ -9,7 +9,7 @@ const { useLocation, Navigate } = require("react-router-dom");
     const location = useLocation()
     const isAuthenticated = useIsAuthenticated()
     const doSignOut = useSignOut()
-    React.useEffect(() => {
+    useEffect(() => {
         if (!isAuthenticated()) {
           // Redirect them to the /login page, but save the current location they
           // were trying to go to when they were redirected. This allows us to
@@ -20,7 +20,7 @@ const { useLocation, Navigate } = require("react-router-dom");
     }, [isAuthenticated()]);
 
     if (!isAuthenticated()) {
-        return React.createElement(Navigate, {
+        return createElement(Navigate, {
         to: loginPath,
         state: {
             from: location

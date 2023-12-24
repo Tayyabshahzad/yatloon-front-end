@@ -2,9 +2,18 @@ import OfferCard from "./offer_card"
 import about1Bg from "../../../assets/images/about_1.jpeg"
 import about2Bg from "../../../assets/images/about_2.jpeg"
 import about3Bg from "../../../assets/images/about_3.jpeg"
+import { HeadingContext } from "../../layout"
+import { useContext, useEffect } from "react"
 
 export default function AboutUs(props)
 {
+    const [mainHeading, setMainHeading] = useContext(HeadingContext)
+
+    useEffect(() => {
+        setMainHeading('About Us')
+    
+    })
+
     const cardContents = [
         {
           src: "https://ejazulquran.com/wp-content/uploads/2022/12/24-hours-400x400.png",

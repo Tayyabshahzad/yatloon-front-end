@@ -39,7 +39,7 @@ export default function Footer(props)
                     <h3 className="uppercase font-bold">Important Links</h3>
                     <div className="mb-6 text-sm mt-2 w-[50px] border-y-2 border-black"></div>
                     <ul className="flex flex-col gap-2">
-                        <li className="w-[80%] border-b border-gray-600 py-1"><Link to="#">Register</Link></li>
+                        <li className="w-[80%] border-b border-gray-600 py-1"><Link to="/meeting" target="_blank">Register</Link></li>
                         <li className="w-[80%] border-b border-gray-600 py-1"><Link to="#">Courses</Link></li>
                         <li className="w-[80%] border-b border-gray-600 py-1"><Link to="#">About Us</Link></li>
                         <li><Link href="#">Contact</Link></li>
