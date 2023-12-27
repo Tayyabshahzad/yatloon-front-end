@@ -11,6 +11,11 @@ import WebcamOffIcon from "../../icons/WebcamOffIcon";
 import WebcamOnIcon from "../../icons/Bottombar/WebcamOnIcon";
 import MicOffIcon from "../../icons/MicOffIcon";
 import MicOnIcon from "../../icons/Bottombar/MicOnIcon";
+import { useParams } from "react-router-dom";
+import { useAuthHeader, useAuthUser } from "react-auth-kit";
+import axios from "axios";
+import BASE_URL from "../../../../constants";
+import ErrorToast from "../../../../components/error_toast";
 
 export function JoiningScreen({
   participantName,
@@ -25,12 +30,30 @@ export function JoiningScreen({
   setWebcamOn,
   setMicOn,
 }) {
+
+  const { roomId } = useParams()
+  const [classObj, setClassObj] = useState({});
+  const [error, setError] = useState(null)
+  const user = useAuthUser()
+  const authHeader = useAuthHeader()
+
   const [setting, setSetting] = useState("video");
   const [{ webcams, mics }, setDevices] = useState({
     devices: [],
     webcams: [],
     mics: [],
   });
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/meetings/token/${roomId}`, {headers: {Authorization: authHeader()}})
+    .then(res => {
+      console.log(res.data)
+      setClassObj(res.data)
+    }).catch(err => {
+      const msg = err.response?.data?.message
+      msg ? setError(msg) : setError('Something went wrong')
+    })
+  }, [])
 
   const [videoTrack, setVideoTrack] = useState(null);
 
@@ -351,6 +374,7 @@ export function JoiningScreen({
           <div className="container grid  md:grid-flow-col grid-flow-row ">
             <div className="grid grid-cols-12">
               <div className="md:col-span-7 2xl:col-span-6 col-span-12 flex justify-center items-center">
+                {error && <ErrorToast message={error} handleClose={setError}/>}
                 <div className="flex items-center justify-center p-1.5 sm:p-4 lg:p-6">
                   <div className="relative w-full md:pl-4 sm:pl-10 pl-5  md:pr-4 sm:pr-10 pr-5">
                     <div className="w-full relative" style={{ height: "45vh" }}>
@@ -441,14 +465,15 @@ export function JoiningScreen({
               </div>
               <div className="md:col-span-5 2xl:col-span-6 col-span-12 md:relative">
                 <div className="flex flex-1 flex-col items-center justify-center xl:m-16 lg:m-6 md:mt-9 lg:mt-14 xl:mt-20 mt-3 md:absolute md:left-0 md:right-0 md:top-0 md:bottom-0">
-                  <MeetingDetailsScreen
-                    participantName={participantName}
+                  {classObj.meetingId && <MeetingDetailsScreen
+                    participantName={user().name}
                     setParticipantName={setParticipantName}
+                    classObj = {classObj}
                     videoTrack={videoTrack}
                     setVideoTrack={setVideoTrack}
                     onClickStartMeeting={onClickStartMeeting}
                     onClickJoin={async (id) => {
-                      const token = await getToken();
+                      const token = classObj.token
                       const valid = await validateMeeting({
                         roomId: id,
                         token,
@@ -462,7 +487,7 @@ export function JoiningScreen({
                           setVideoTrack(null);
                         }
                         onClickStartMeeting();
-                        setParticipantName("");
+                        setParticipantName(user().name);
                       } else alert("Invalid Meeting Id");
                     }}
                     _handleOnCreateMeeting={async () => {
@@ -473,7 +498,7 @@ export function JoiningScreen({
                       setParticipantName("");
                       return _meetingId;
                     }}
-                  />
+                  />}
                 </div>
               </div>
             </div>

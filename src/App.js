@@ -23,6 +23,11 @@ import AdminDashboardLayout from './pages/Dashboard/Admin/layout';
 import AdminTrialRequests from './pages/Dashboard/Admin/Requests/trial_request';
 import AdminDashboard from './pages/Dashboard/Admin';
 import TeacherRequests from './pages/Dashboard/Teacher/Request';
+import TeacherUpcomingClasses from './pages/Dashboard/Teacher/Class/Upcoming';
+import StudentUpcomingClasses from './pages/Dashboard/Student/Class/upcoming';
+import CreateCourse from './pages/Dashboard/Admin/Course/Create';
+import AdminCourses from './pages/Dashboard/Admin/Course';
+import EditCourse from './pages/Dashboard/Admin/Course/edit';
 
 
 
@@ -62,6 +67,12 @@ function App() {
                           <MyTrialRequests />
                         </RequireAuth>
                       } />
+
+                      <Route path='/student/classes/upcoming' element={
+                        <RequireAuth loginPath="/login">
+                          <StudentUpcomingClasses />
+                        </RequireAuth>
+                      } />
                   </Route>
 
                   <Route path='/teacher' element={<TeacherDashboardLayout />}>
@@ -74,6 +85,12 @@ function App() {
                       <Route path='/teacher/requests' element={
                         <RequireAuth loginPath="/login">
                           <TeacherRequests />
+                        </RequireAuth>
+                      } />
+
+                      <Route path='/teacher/classes/upcoming' element={
+                        <RequireAuth loginPath="/login">
+                          <TeacherUpcomingClasses />
                         </RequireAuth>
                       } />
                   </Route>
@@ -91,13 +108,31 @@ function App() {
                           <AdminTrialRequests />
                         </RequireAuth>
                       } />
+
+                      <Route path='/admin/courses/create' element={
+                        <RequireAuth loginPath="/login">
+                          <CreateCourse />
+                        </RequireAuth>
+                      } />
+
+                      <Route path='/admin/courses' element={
+                        <RequireAuth loginPath="/login">
+                          <AdminCourses />
+                        </RequireAuth>
+                      } />
+
+                      <Route path='/admin/courses/edit/:id' element={
+                        <RequireAuth loginPath="/login">
+                          <EditCourse />
+                        </RequireAuth>
+                      } />
                   </Route>
                   
                   
                   <Route path='*' element={<NotFoundPage />} />
                   <Route path='/404' element={<NotFoundPage />} />
                 </Route>
-                <Route path='/meeting' element={<Meeting />} />
+                <Route path='/meeting/:roomId' element={<Meeting />} />
             </Routes>
           </BrowserRouter>
       </AuthProvider>

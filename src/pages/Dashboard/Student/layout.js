@@ -25,6 +25,9 @@ export default function StudentDashboardLayout(props)
                         <MenuItem className="bg-zinc-900 text-white" component={<Link to="/student/trial-request/my" />}>My Requests</MenuItem>
                         <MenuItem className="bg-zinc-900 text-white" component={<Link to="/trial-request" />}>Request Trial</MenuItem>
                     </SubMenu>
+                    <SubMenu label="Classes">
+                        <MenuItem className="bg-zinc-900 text-white" component={<Link to="/student/classes/upcoming" />}>This Week</MenuItem>
+                    </SubMenu>
                 </Menu>
                 </Sidebar>
 

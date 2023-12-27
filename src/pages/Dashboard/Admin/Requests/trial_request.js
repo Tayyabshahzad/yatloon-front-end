@@ -57,8 +57,8 @@ export default function AdminTrialRequests(props)
             console.log(err)
         })
     }
-    , []
-    )
+    , [tRequest])
+
 
     
 

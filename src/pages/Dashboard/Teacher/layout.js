@@ -23,6 +23,9 @@ export default function TeacherDashboardLayout(props)
                     <MenuItem  component={<Link className="hover:bg-mud" to="/teacher/dashboard" />}> Dashboard</MenuItem>
  
                     <MenuItem className="bg-zinc-900 text-white" component={<Link to="/teacher/requests" />}>My Requests</MenuItem>
+                    <SubMenu label="Classes">
+                        <MenuItem className="bg-zinc-900 text-white" component={<Link to="/teacher/classes/upcoming" />}>This Week</MenuItem>
+                    </SubMenu>
                 </Menu>
                 </Sidebar>
 

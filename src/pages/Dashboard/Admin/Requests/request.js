@@ -21,7 +21,7 @@ export default function AdminTrailRequest({ request_id , handleClose})
         .catch((err) => {
             console.log(err)
         })
-    }, [])
+    }, [isOpen])
 
     return (
         <div className="border relative rounded-lg border-zinc-500 pt-8 px-4 min-h-[100vh] w-full">

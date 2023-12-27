@@ -1,5 +1,6 @@
 import { CheckIcon, ClipboardIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
+import { useAuthUser } from "react-auth-kit";
 
 export function MeetingDetailsScreen({
   onClickJoin,
@@ -9,21 +10,24 @@ export function MeetingDetailsScreen({
   videoTrack,
   setVideoTrack,
   onClickStartMeeting,
+  classObj
 }) {
+
   const [meetingId, setMeetingId] = useState("");
   const [meetingIdError, setMeetingIdError] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
-  const [iscreateMeetingClicked, setIscreateMeetingClicked] = useState(false);
+  const [iscreateMeetingClicked, setIscreateMeetingClicked] = useState(true);
   const [isJoinMeetingClicked, setIsJoinMeetingClicked] = useState(false);
+  const user = useAuthUser()
 
   return (
     <div
       className={`flex flex-1 flex-col justify-center w-full md:p-[6px] sm:p-1 p-1.5`}
     >
       {iscreateMeetingClicked ? (
-        <div className="border border-solid border-gray-400 rounded-xl px-4 py-3  flex items-center justify-center">
+        <div className="border border-solid border-gray-400 rounded-xl px-4 py-3 mb-4  flex items-center justify-center">
           <p className="text-white text-base">
-            {`Meeting code : ${meetingId}`}
+            {`Meeting code : ${classObj.meetingId}`}
           </p>
           <button
             className="ml-2"
@@ -60,36 +64,48 @@ export function MeetingDetailsScreen({
 
       {(iscreateMeetingClicked || isJoinMeetingClicked) && (
         <>
-          <input
-            value={participantName}
-            onChange={(e) => setParticipantName(e.target.value)}
-            placeholder="Enter your name"
-            className="px-4 py-3 mt-5 bg-gray-650 rounded-xl text-white w-full text-center"
-          />
+          <div className="flex px-4 py-1 bg-gray-650 rounded-xl text-white w-full ">
+            <p className="mr-1 font-bold">Your Name: </p>
+            <p>{participantName}</p>
+          </div>
+
+          <div className="flex px-4 py-1  bg-gray-650 rounded-xl text-white w-full">
+            <p className="mr-1 font-bold">Course: </p>
+            <p>{classObj.course.course_name}</p>
+          </div>
+
+          {
+            user()['role.name'] == 'teacher' ? 
+            <div className="flex px-4 py-1  bg-gray-650 rounded-xl text-white w-full">
+            <p className="mr-1 font-bold">Student: </p>
+            <p>{classObj.student.name}</p>
+          </div>  : 
+            <div className="flex px-4 py-1  bg-gray-650 rounded-xl text-white w-full">
+            <p className="mr-1 font-bold">Teacher: </p>
+            <p>{classObj.teacher.name}</p>
+          </div>
+          }
 
           {/* <p className="text-xs text-white mt-1 text-center">
             Your name will help everyone identify you in the meeting.
           </p> */}
           <button
-            disabled={participantName.length < 3}
-            className={`w-full ${
-              participantName.length < 3 ? "bg-gray-650" : "bg-purple-350"
-            }  text-white px-2 py-3 rounded-xl mt-5`}
+            className="bg-mud text-white mt-4 rounded-md px-4 py-2 w-full"
             onClick={(e) => {
-              if (iscreateMeetingClicked) {
+              if (false) {
                 if (videoTrack) {
                   videoTrack.stop();
                   setVideoTrack(null);
                 }
                 onClickStartMeeting();
               } else {
-                if (meetingId.match("\\w{4}\\-\\w{4}\\-\\w{4}")) {
-                  onClickJoin(meetingId);
+                if (classObj.meetingId.match("\\w{4}\\-\\w{4}\\-\\w{4}")) {
+                  onClickJoin(classObj.meetingId);
                 } else setMeetingIdError(true);
               }
             }}
           >
-            {iscreateMeetingClicked ? "Start a meeting" : "Join a meeting"}
+            {iscreateMeetingClicked ? "Join Meeting" : "Join a meeting"}
           </button>
         </>
       )}

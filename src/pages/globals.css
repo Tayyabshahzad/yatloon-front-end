@@ -5,6 +5,7 @@
 *{
   padding: 0;
   margin: 0;
+  font-family: 'imprima', sans-serif !important;
 }
 
 :root {
@@ -239,3 +240,32 @@ p.desc{
   position:absolute;
 }
 
+.react-ios-time-picker-container {
+  background-color: white !important;
+}
+
+.react-ios-time-picker-btn-container {
+  background-color: rgb(37, 101, 92) !important;
+  color: white !important;
+}
+
+.react-ios-time-picker-btn {
+  color: white !important;
+  font-family: 'imprima', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.react-ios-time-picker-selected-overlay{
+  background-color: rgb(37, 101, 92) !important;
+  font-family: 'imprima', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.react-ios-time-picker-cell-inner-minute:hover, .react-ios-time-picker-cell-inner-hour:hover{
+  background-color: #C09D3E !important;
+  font-family: 'imprima', sans-serif !important;
+}
+
+.react-ios-time-picker {
+  
+}

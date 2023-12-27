@@ -22,7 +22,7 @@ export default function TeacherRequests(props)
             console.log(err)
         })
     }
-    , []
+    , [requestId]
     )
     
 
