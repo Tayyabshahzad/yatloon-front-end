@@ -28,6 +28,10 @@ export default function AdminDashboardLayout(props)
                         <MenuItem className="bg-zinc-900 text-white" component={<Link to="/admin/Courses/Create" />}>Create New</MenuItem>
                         <MenuItem className="bg-zinc-900 text-white" component={<Link to="/admin/Courses" />}>All Courses</MenuItem>
                     </SubMenu>
+                    <SubMenu label="Users">
+                        <MenuItem className="bg-zinc-900 text-white" component={<Link to="/admin/Courses/Create" />}>Create New</MenuItem>
+                        <MenuItem className="bg-zinc-900 text-white" component={<Link to="/admin/Courses" />}>All Courses</MenuItem>
+                    </SubMenu>
                 </Menu>
                 </Sidebar>
 
