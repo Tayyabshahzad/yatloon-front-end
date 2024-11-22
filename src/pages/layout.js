@@ -18,6 +18,9 @@ export default function RootLayout({ children }) {
   const [mainHeading, setMainHeading ]= useState('')
   return (
     <html lang="en">
+      <head>
+        <title>Yatloon</title>
+      </head>
       <body className={`min-h-screen imprima`}>
         <HeaderStrip />
         <Header />

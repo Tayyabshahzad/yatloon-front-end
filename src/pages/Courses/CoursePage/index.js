@@ -4,8 +4,9 @@ import BASE_URL from "../../../constants";
 import axios from "axios";
 import { HeadingContext } from "../../layout";
 import PricingCard from "../../../components/pricing_card";
-import pricingBg from '../../../assets/images/pricing_bg.jpeg'
-
+import pricingBg from '../../../assets/images/pricing_bg.jpeg' 
+import config from '../../../constants';
+import DOMPurify from 'dompurify';
 export default function CoursePage() {
 
     const { courseId} = useParams();
@@ -14,26 +15,23 @@ export default function CoursePage() {
     const [mainHeading, setMainHeading] = useContext(HeadingContext)
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/courses/get/${courseId}`)
+        axios.get(`${config.REACT_APP_API_BASE_URL}courses/${courseId}`)
         .then((res) => {
+           
             setCourse(res.data)
-            setMainHeading('Online ' + res.data.course_name)
-            console.log(res.data)
+            setMainHeading(res.data.title)
         })
         .catch((err) => {
-            if(err?.response?.data?.code === 404 || err?.response?.data?.code === 400)
-            {
-                navigate('/404')
-            
-            }
+            console.log("Error ", err); 
         })
     }, [])
-
+    const sanitizedDescription = DOMPurify.sanitize(course.description);
     return (
         <div>
-            <section className="cinzel relative bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${course.course_image_url})`}}>   
+            <section className="cinzel relative bg-no-repeat bg-cover bg-center" 
+           style={{backgroundImage: `url(${config.REACT_APP_ASSET_URL}storage/${course.file})`}}>   
                     <div className="px-4 backdrop-blur-md py-8 flex flex-col items-center">
-                        <h1 className="text-[25px] mb-16 text-white w-fit p-2 border border-teal-900">Online Basic Quran Course</h1>
+                        <h1 className="text-[25px] mb-16  w-fit p-2 border border-teal-900"> {course.title} </h1>
                         <div className="flex max-sm:flex-col items-center justify-center gap-24">
                             <div>
                                 <img className="max-h-[500px]" src={course.course_image_url ? course.course_image_url : ""} />
@@ -71,7 +69,8 @@ export default function CoursePage() {
                     <h2 className="cinzel uppercase text-[25px] text-gray-700">Course Details</h2>
                     <div className="flex rounded-lg">
                         <div className="mt-8">
-                            <p className="text-gray-500 ">{course.course_description}</p>
+                        <p className="text-gray-500 " dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
+
                         </div>
                     </div>
                 </div>
@@ -81,10 +80,13 @@ export default function CoursePage() {
                         <div className="mt-8 ml-3">
                             <ul className=" flex flex-col gap-2">
                                 {
-                                    course.course_content?.split(',')?.map((item, index) => {
+                                     course.terms?.map((term, index) => {
                                         return (
-                                            <li key={index} className="list-disc text-gray-500">{item}</li>
-                                        )
+                                            <li key={index} className="list-disc text-gray-500">
+                                                <h3 className="font-bold text-lg">{term.title}</h3>
+                                                <p className="text-sm" dangerouslySetInnerHTML={{ __html: term.description }} />
+                                            </li>
+                                        );
                                     })
                                 }
                             </ul>

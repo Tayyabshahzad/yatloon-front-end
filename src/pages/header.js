@@ -6,9 +6,8 @@ import { Dropdown } from "flowbite-react/lib/cjs/components/Dropdown";
 import { Avatar } from "flowbite-react/lib/cjs/components/Avatar";
 import { useIsAuthenticated, useSignOut } from "react-auth-kit";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import BASE_URL from "../constants";
-
+import axios from "axios"; 
+import config from '../constants';
 export default function Header(props)
 {
     const isAuthenticated = useIsAuthenticated();
@@ -16,20 +15,29 @@ export default function Header(props)
     const signOut = useSignOut();
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
+    const [courseScience, setScienceCourses] = useState([]);
 
     const handleSignOut = (e) => {
       signOut();
       navigate('/')
-    }
+    } 
 
-    useEffect(() => {
-      axios.get(`${BASE_URL}/courses/get`)
-      .then((res) => {
-          setCourses(res.data?.rows)
-      })
-      .catch((err) => {
+    useEffect(() => { 
+      axios.get(`${config.REACT_APP_API_BASE_URL}courses`)
+      .then((res) => { 
+          setCourses(res.data)
+      }).catch((err) => {
           console.log(err)
       })
+
+
+      axios.get(`${config.REACT_APP_API_BASE_URL}courses/science`)
+      .then((res) => { 
+        setScienceCourses(res.data)
+      }).catch((err) => {
+          console.log(err)
+      })
+
     }, [])
 
     return (
@@ -47,26 +55,38 @@ export default function Header(props)
               Home
             </Navbar.Link>
             <Navbar.Link style={{fontSize: "20px"}} href="/about-us" active={currentPath.pathname === '/about-us' ? true : false}>About Us</Navbar.Link>
+            <Navbar.Link style={{fontSize: "20px"}} href="/contact" active={currentPath.pathname === '/contact' ? true : false}>Contact</Navbar.Link> 
             <Dropdown
               inline
-              label={
-                <span className="text-gray-900 text-[20px]">Courses</span>
-              }
+              label={  <span className="text-gray-900 text-[20px]">Courses</span> }
             >
               {
                 courses.map((course) => {
                   return (
-                    <Dropdown.Item href={`/courses/${course.id}`}>{course.course_name}</Dropdown.Item>
+                    <Dropdown.Item key={course.id} href={`/courses/${course.id}`}>{course.title}</Dropdown.Item>
                   )
                 })
               }
             </Dropdown>
-            <Navbar.Link style={{fontSize: "20px"}} href="/login" active={currentPath.pathname === '/login' ? true : false}>Login</Navbar.Link>
-            <Navbar.Link style={{fontSize: "20px"}} href="/contact" active={currentPath.pathname === '/contact' ? true : false}>Contact</Navbar.Link>
+            <Dropdown inline  label={  <span className="text-gray-900 text-[20px]"> Science Courses </span> }
+            >
+              {
+                courseScience.map((scienceCourse) => {
+                  return (
+                    <Dropdown.Item key={scienceCourse.id} href={`/courses/${scienceCourse.id}`}>{scienceCourse.title}</Dropdown.Item>
+                  )
+                })
+              }
+            </Dropdown>
+           
+           
           </Navbar.Collapse>
           <div className="flex gap-4">
+          <div>
+              
+            </div>
             <div>
-              <Button className="bg-royal"><Link to={'/trial-request'}>Free Trial</Link></Button>
+              <Button className="bg-royal"><Link to={'/register'}>Free Trial</Link></Button>
             </div>
             { isAuthenticated() ? 
                 <Dropdown

@@ -49,7 +49,7 @@ export default function Footer(props)
                     <h3 className="uppercase font-bold">Contact</h3>
                     <div className="mb-6 text-sm mt-2 w-[50px] border-y-2 border-black"></div>
                     <ul className="mt-8 flex flex-col gap-4">
-                        <li>Contact: +9211111111</li>
+                        <li>Contact: +92-325-5854448</li>
                         <li>Email: Info@YatloonQuran.com</li>
                     </ul>
                 </div>

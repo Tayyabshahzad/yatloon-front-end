@@ -126,7 +126,7 @@ useEffect(() => {
         <div style={{backgroundImage: `url(${animationBg})`}} className="contrast animation-wrapper bg-[length:100%_100%]">
             <canvas className="container-null" id="container" role="main"></canvas>
                 <div className="content">
-                    <h1 className={`cinzel bg-[rgba(0,_0,_0,_0.5)] rounded-xl max-sm:text-[40px] text-[60px] text-white text-center font-bold`}>More Than 10 Years Of Experience</h1>
+                    <h1 className={`cinzel bg-[rgba(0,_0,_0,_0.5)] rounded-xl max-sm:text-[40px] text-[60px] text-white text-center font-bold`}></h1>
                 </div>
         <div className="blur blurTop"><canvas class="canvas"id="blurCanvasTop"></canvas></div>
         <div className="blur blurBottom"><canvas width="1000px" height="1000px" class="canvas" id="blurCanvasBottom"></canvas></div>

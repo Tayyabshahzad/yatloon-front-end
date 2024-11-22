@@ -85,7 +85,9 @@ export default function CreateCourse(props)
                 fileData.append('file', file)
                 const imgUrl = `${BASE_URL}/files/upload`
                 const res = await axios.post(imgUrl, fileData, {headers})
+
                 url = res.data.url
+                console.log("SSSSSSS",res)
                 fileName = res.data.filename
                 data.delete('course_image')
             }
